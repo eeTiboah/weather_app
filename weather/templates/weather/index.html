@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div>
+		<h2>Check the weather for your city</h2>
+		<div>
+			<form method="POST">
+				{% csrf_token %}
+			    {{ form.name }}
+			<button>Add City</button><br><br>
+			</form>
+			<div>
+				<table>
+					{% for weather in weather_data %}
+
+					<tr>
+
+					<td>
+						<span> <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image"></span>
+					</td>
+					<td>
+						<span>{{ weather.city }}</span><br>
+						<span>{{ weather.temperature }}°F</span><br>
+						<small>{{ weather.description }}</small><br>
+					</td>
+
+					</tr>
+					{% endfor %}
+
+				</table>
+				</div>
+			</div>
+		</div>
+	</body>
+	</html>
