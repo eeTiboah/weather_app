@@ -5,6 +5,10 @@ from .forms import CityForm
 
 # Create your views here.
 def index(request):
+	'''url = 'http://api.openweathermap.org/data/2.5/weather?q=city&appid=69cc108c2c5f3c222700a6de6b5a0d91'
+	city=City.objects.all()
+	city_weather=requests.get(url.format(city)).json()
+	print(city_weather)'''
 	if request.method=='POST':
 		form=CityForm(request.POST)
 		form.save()
@@ -12,7 +16,7 @@ def index(request):
 	form=CityForm()
 	weather_data=[]
 	for city in cities:
-		url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=69cc108c2c5f3c222700a6de6b5a0d91'
+		url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=69cc108c2c5f3c222700a6de6b5a0d91'
 		city_weather=requests.get(url.format(city)).json()
 		print(city_weather)
 		weather_info= {
@@ -22,5 +26,13 @@ def index(request):
 		'icon':city_weather['weather'][0]['icon']
 		}
 		weather_data.append(weather_info)
-	context={'weather_data': weather_data, 'form': form}
-	return render(request, 'weather/index.html', context)
+	return render(request, 'weather/index.html', {'weather_data':weather_data, 'form':form})
+
+
+def delete(request, id):
+
+    if request.method == 'POST':
+        print(request)
+        City.objects.filter(id=id).delete()
+
+    return redirect('/')

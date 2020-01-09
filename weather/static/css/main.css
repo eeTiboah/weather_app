@@ -1,0 +1,28 @@
+body{
+    background-image: url("../wallpaper.jpg");
+    background-size: cover;
+    height: 100vh;
+    background-position: center;
+
+}
+
+
+.head-div{
+  /*background-image: url("../wallpaper.jpg");
+  background-size: cover;
+  height: 200px;
+  background-position: center;*/
+  text-align: center;
+  padding-top: 30px;
+  color: white;
+}
+
+div form{
+  text-align: center;
+  margin-top: 50px;
+}
+
+.weather-data{
+  color: #f6efb4;
+
+}
